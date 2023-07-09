@@ -33,6 +33,6 @@
     }
   },
   "lint-staged": {
-    "*.tsx": ["./node_modules/.bin/eslint", "git add"]
+    "*.tsx": ["./node_modules/.bin/eslint"]
   }
 }

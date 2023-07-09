@@ -1,0 +1,16 @@
+# #!/usr/bin/env sh
+# . "$(dirname -- "$0")/_/husky.sh"
+
+branch_name=$(git symbolic-ref -q HEAD)
+branch_name=${branch_name##refs/heads/}
+branch_name=${branch_name:-HEAD}
+
+message="$(cat $1)"
+requiredPattern="${branch_name} (feature|bugfix|doc|refactor)\([^)]+\).*$"
+if ! [[ $message =~ $requiredPattern ]];
+then
+  echo "🚨 Incorrect commit format! 😕 The commit message must have the following format: ${branch_name} <type>(scope) <description>"
+  exit 1
+fi
+
+
